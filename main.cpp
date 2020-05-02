@@ -53,24 +53,33 @@ int main(int argc, char* argv[])
       filename+=" ";
       filename+=argv[i];
     }
-    int occurance;
+
+  int occ[26];
+  pid_t pid;  
+    pid=fork();
   for(int i=97;i<97+26;i++)
   {
-    pid_t pid;  
-    pid=fork();
+       
     if(pid==0)
     {
+       int occurance;
       char letter=i;
       cout<<letter<<" ";
-      occurance=count(i,filename);
-      cout<<occurance<<endl;
+     occ[i-97]=count(i,filename);
+ //   occurance=count(i,filename); 
+  //    cout<<occurance<<endl;
+      cout<<occ[i-97]<<endl;
     }else if (pid<0)
     {
       cout<<"fork error\n";
       exit(-1);
+    }else
+    {
+    break;
     }
   }
-    
+//  if (pid>0)
+    cout<<occ[2]<<endl;
 
   return 0;
 }
