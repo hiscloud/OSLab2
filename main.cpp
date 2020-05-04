@@ -62,24 +62,25 @@ int main(int argc, char* argv[])
        
     if(pid==0)
     {
-       int occurance;
-      char letter=i;
+        char letter=i;
       cout<<letter<<" ";
      occ[i-97]=count(i,filename);
- //   occurance=count(i,filename); 
-  //    cout<<occurance<<endl;
-      cout<<occ[i-97]<<endl;
+        cout<<occ[i-97]<<endl;
+      exit(-1);
     }else if (pid<0)
     {
       cout<<"fork error\n";
       exit(-1);
     }else
     {
-    break;
+      break;
+      exit;
     }
   }
-//  if (pid>0)
-    cout<<occ[2]<<endl;
-
+  if (pid>0){/////
+    for (int i=0;i<26;i++)
+      cout<<occ[i]<<endl;
+  // exit(-1);
+  }
   return 0;
 }
